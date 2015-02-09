@@ -5,6 +5,13 @@ class ProductTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
+  test "title should has 10 or more characters" do
+      product = Product.new
+      product.title = "my book1"
+      assert product.invalid?
+      assert_equal ["at least 10 characters."], product.errors[:title]
+  end
+
   test "product attributes must not be empty" do
     product = Product.new
     assert product.invalid?
@@ -16,7 +23,7 @@ class ProductTest < ActiveSupport::TestCase
 
   test "product price should be positive" do
     product = Product.new 
-    product.title = "MyBook 1"
+    product.title = "MyBook 1 Edition 1"
     product.description = "This is MyBook 1"
     product.image_url = "test.png"
 
@@ -34,7 +41,7 @@ class ProductTest < ActiveSupport::TestCase
 
   def new_product(url)
     product = Product.new
-    product.title = "my book1"
+    product.title = "my book1 edtion 1"
     product.description = "desc for my book1"
     product.price = 9.9
     product.image_url = url
