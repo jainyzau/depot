@@ -7,3 +7,17 @@ one:
 two:
   product_id: 
   cart_id: 
+
+
+ruby:
+  product_id: 1
+  cart_id: 1
+  quantity: 1
+  price: 9.9
+
+
+rspec:
+  product_id: 2
+  cart_id: 1
+  quantity: 1
+  price: 19.9

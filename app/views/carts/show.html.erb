@@ -9,10 +9,11 @@
             <td><%= item.quantity %>&times;</td>
             <td><%= item.product.title %></td>
             <td class="item_price"><%= number_to_currency(item.total_price) %></td>
+            <td><%= button_to 'Delete', item, method: :delete, data: {confirm: 'Delete this from cart?'}%></td>
         </tr>
     <% end %>
     <tr class="total_line">
-        <td colspan="2">Total</td>
+        <td colspan="3">Total</td>
         <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
     </tr>
 </table>

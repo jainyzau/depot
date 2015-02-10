@@ -8,6 +8,7 @@ class Product < ActiveRecord::Base
         with: /\.(gif|jpg|png)\Z/i,
         message: 'must be a URL for GIF, JPG or PNG image.'
     }
+    validates :image_url, uniqueness: true
 
     # support caching.
     def self.latest
