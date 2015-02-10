@@ -41,9 +41,11 @@ class LineItemsControllerTest < ActionController::TestCase
 
   test "should destroy line_item" do
     assert_difference('LineItem.count', -1) do
+      @line_item.product_id = products(:ruby).id
+      @line_item.save!
       delete :destroy, id: @line_item
     end
 
-    assert_redirected_to line_items_path
+    assert_redirected_to cart_path(session[:cart_id])
   end
 end
