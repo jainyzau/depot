@@ -33,6 +33,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
+        format.js
         format.html { redirect_to store_url }
         format.json { render action: 'show', status: :created, location: @line_item }
       else
