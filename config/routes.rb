@@ -1,5 +1,6 @@
 Depot::Application.routes.draw do
   resources :line_items
+  get "line_items/decrease/:id" => "line_items#decrease", as: :line_items_decrease
 
   resources :carts
 

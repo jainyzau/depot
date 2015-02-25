@@ -1,0 +1,2 @@
+<% cart_content = hide_div_if(@cart.line_items.empty?, id: 'cart') { render @cart }%>
+$('#cart').html("<%= escape_javascript(cart_content) %>");
