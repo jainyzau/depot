@@ -12,7 +12,6 @@ two:
   image_url: MyString
   price: 9.99
 
-
 ruby:
   title: Programming Ruby 1.9
   description: 
