@@ -13,11 +13,10 @@ class CartTest < ActiveSupport::TestCase
 
   test "add duplicate product" do
     cart = carts(:one)
-    product_id = products(:ruby).id
+    product_id = products(:one).id
     
     assert_difference('cart.line_items.size', 1) do
-        count = 5
-        count.times { cart.add_product(product_id).save! }
+        5.times { cart.add_product(product_id).save! }
     end
   end
 end

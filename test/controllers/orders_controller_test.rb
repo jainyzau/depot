@@ -29,7 +29,8 @@ class OrdersControllerTest < ActionController::TestCase
 
   test "should create order" do
     assert_difference('Order.count') do
-      post :create, order: { address: @order.address, email: @order.email, name: @order.name, pay_type: @order.pay_type }
+      session[:cart_id] = carts(:one).id
+      post :create, order: { address: @order.address, email: @order.email, name: @order.name, pay_type_id: @order.pay_type_id }
     end
 
     assert_redirected_to store_url 
