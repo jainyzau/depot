@@ -3,6 +3,7 @@ class LineItemsController < ApplicationController
   include VisitCount
   before_action :set_cart, only: [:create, :destroy, :decrease]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy, :decrease]
+  skip_before_action :authorize, only: [ :create]
 
   # GET /line_items
   # GET /line_items.json

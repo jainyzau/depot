@@ -5,6 +5,14 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
   #fixtures :products
+
+  # login first
+  setup do
+    dave = users(:one)
+    post_via_redirect "/login", name: dave.name, password: 'secret'
+    assert_response :success
+    assert_template "index"
+  end
   
   test "buying a product" do
     LineItem.delete_all
