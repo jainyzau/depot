@@ -2,6 +2,7 @@ require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
   test "should get new" do
+    logout
     get :new
     assert_response :success
   end
@@ -14,6 +15,7 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "should fail login" do
+    logout
     dave = users(:one)
     post :create, name: dave.name, password: 'secretxxx'
     assert_redirected_to login_url
