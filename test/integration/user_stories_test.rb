@@ -129,4 +129,12 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
     assert_equal 'admin@depot.com', mail[:from].value
     assert_equal '[Depot][Error] Email Notification Failed', mail.subject
   end
+
+  test "should fail on accessing admin pages" do
+    get "/logout"
+    assert_redirected_to "/"
+
+    get "/orders" # one of admin pages
+    assert_redirected_to "/login"
+  end
 end

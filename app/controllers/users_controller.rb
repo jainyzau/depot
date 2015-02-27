@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  include BCrypt
 
   # GET /users
   # GET /users.json
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @update_user_info = true
   end
 
   # POST /users
@@ -40,8 +42,15 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    user_update = user_params
+    current_password = user_update.delete(:current_password)
     respond_to do |format|
-      if @user.update(user_params)
+      if !@user.authenticate(current_password)
+        @update_user_info = true
+        @user.errors.add(:current_password, "validation failed")
+        format.html { render action: 'edit', notice: "Current password validation failed" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      elsif @user.update(user_update)
         format.html { redirect_to users_path, notice: "User #{@user.name} was successfully updated." }
         format.json { head :no_content }
       else
@@ -74,6 +83,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation)
+      params.require(:user).permit(:name, :password, :password_confirmation, :current_password)
     end
 end
