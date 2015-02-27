@@ -1,4 +1,6 @@
 Depot::Application.routes.draw do
+  resources :users
+
   resources :orders
   get "orders/ship/:id" => "orders#ship", as: :ship_order
 
