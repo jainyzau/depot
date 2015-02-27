@@ -1,0 +1,18 @@
+<h3>Dear Admin of Depot,</h3>
+
+<p>We are sorry to notify you that there's an notification error during creating the following order:</p>
+
+<ul>
+    <li>Order ID: <%= @order.id %></li>
+    <li>Customer Name: <%= @order.name %></li>
+    <li>Customer Email: <%= @order.email %></li>
+    <li>Customer Address: <%= @order.address %></li>
+    <li>Pay Type: <%= @order.pay_type.name %></li>
+    <li>Creation Time: <%= @order.updated_at %></li>
+</ul>
+
+<p>
+Best regards,<br/>
+Depot
+</p>
+

@@ -22,4 +22,10 @@ class OrderNotifier < ActionMailer::Base
 
     mail to: order.email, subject: 'Pragmatic Store Order Shipped'
   end
+
+  def notify_admin_email_error(order)
+    @order = order
+
+    mail to: 'haifeng.zhao@truepartner.cn', subject: '[Depot][Error] Email Notification Failed'
+  end
 end

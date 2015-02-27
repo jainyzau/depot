@@ -1,7 +1,11 @@
+class EmailAddressError < Exception
+end
+
 class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :ship]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :ship, :email_notification_error]
+  rescue_from EmailAddressError, with: :email_notification_error
 
   # GET /orders
   # GET /orders.json
@@ -17,7 +21,11 @@ class OrdersController < ApplicationController
   def ship
     @order.ship_date = Time.now
     @order.save!
-    OrderNotifier.shipped(@order).deliver
+    if @order.email.match /^\w+([-\+.\w]+)*@\w+*([\.\w]+*)$/
+        OrderNotifier.shipped(@order).deliver
+    else
+        raise EmailAddressError
+    end
     redirect_to orders_url, notice: "Order #{@order.id} is shipped." 
   end
 
@@ -51,7 +59,11 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy session[:cart_id]
         session[:cart_id] = nil
-        OrderNotifier.received(@order).deliver
+        if @order.email.match /^\w+([-\+.\w]+)*@\w+*([\.\w]+*)$/
+            OrderNotifier.received(@order).deliver
+        else
+            raise EmailAddressError
+        end
 
         format.html { redirect_to store_url, notice: 'Thank you for your order.' }
         format.json { render action: 'show', status: :created, location: @order }
@@ -95,5 +107,10 @@ class OrdersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:name, :address, :email, :pay_type_id)
+    end
+
+    def email_notification_error
+        OrderNotifier.notify_admin_email_error(@order).deliver
+        redirect_to store_url, notice: 'Failed to send order confirmation email'
     end
 end
