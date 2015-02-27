@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :ship]
 
   # GET /orders
   # GET /orders.json
@@ -12,6 +12,13 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+  end
+
+  def ship
+    @order.ship_date = Time.now
+    @order.save!
+    OrderNotifier.shipped(@order).deliver
+    redirect_to orders_url, notice: "Order #{@order.id} is shipped." 
   end
 
   # GET /orders/new

@@ -1,4 +1,7 @@
 <h1>Listing orders</h1>
+<% if notice %>
+    <p id="notice"><%= notice%></p>
+<% end %>
 
 <table>
   <thead>
@@ -19,8 +22,13 @@
         <td><%= order.name %></td>
         <td><%= order.address %></td>
         <td><%= order.email %></td>
-        <td><%= order.pay_type %></td>
+        <td><%= order.pay_type.name %></td>
         <td><%= link_to 'Show', order %></td>
+        <% if order.ship_date.nil?%>
+            <td><%= link_to 'Ship', ship_order_path(order) %></td>
+        <% else %>
+            <td><%= 'Shipped'%></td>
+        <% end %>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
