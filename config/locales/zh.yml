@@ -1,0 +1,33 @@
+#encoding: utf-8
+zh:
+
+  layouts:
+    application:
+      title:    "实用书库"
+      home:     "主页"
+      faq:      "常见问题"
+      news:     "新闻"
+      contact:  "联系我们"
+  store:
+    index:
+      title_html: "您的实用书库"
+      add_html:   "添加到购物车"
+  carts:
+    cart:
+      title:      "您的购物车"
+      empty:      "清空"
+      checkout:   "结帐"
+  line_items:
+    line_item:
+      delete:     "删除"
+  number:
+    currency:
+      format:
+        unit:       "￥"
+        precision:  2
+        separator:  "."
+        delimiter:  ","
+        format:     "%u&nbsp;%n"
+
+
+
