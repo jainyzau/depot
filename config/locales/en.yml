@@ -58,3 +58,7 @@ en:
       email:        "Email"
       pay_type:     "Pay With"
       submit:       "Place Order"
+  PayTypes:
+    paytype_1:      "Check"
+    paytype_2:      "Credit Card"
+    paytype_3:      "Purchase Order"

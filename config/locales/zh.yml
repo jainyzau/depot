@@ -58,4 +58,8 @@ zh:
       header:       
         one:        "以下这个错误让%{model}不能正确提交"
         other:      "以下这%{count}个错误让%{model}不能正确提交"
+  PayTypes:
+    paytype_1:      "支票"
+    paytype_2:      "信用卡"
+    paytype_3:      "订购"
 
