@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% if notice%>
+  <p id="notice"><%= notice %></p>
+<% end %>
 
 <p>
   <strong>Name:</strong>
@@ -17,7 +19,7 @@
 
 <p>
   <strong>Pay type:</strong>
-  <%= @order.pay_type %>
+  <%= @order.pay_type.name %>
 </p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |

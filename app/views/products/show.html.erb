@@ -19,7 +19,7 @@
 
 <p>
   <strong>Price:</strong>
-  <%= @product.price %>
+  <%= number_to_currency(price_localize(@product.price)) %>
 </p>
 
 <p>

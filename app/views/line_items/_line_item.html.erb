@@ -5,7 +5,7 @@
 <% end %>
     <td><%= line_item.quantity %>&times;</td>
     <td><%= line_item.product.title %></td>
-    <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
+    <td class="item_price"><%= number_to_currency(price_localize(line_item.total_price)) %></td>
     <td>
         <%= link_to raw(image_tag('/assets/minus.png', size: '16x16')), line_items_decrease_path(id: line_item), method: :get, remote: true%>
         <%= button_to t('.delete'), line_item, method: :delete, data: {confirm: 'Delete this from cart?'}%>
