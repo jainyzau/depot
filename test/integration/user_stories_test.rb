@@ -132,9 +132,9 @@ class UserStoriesTest < ActionDispatch::IntegrationTest
 
   test "should fail on accessing admin pages" do
     get "/logout"
-    assert_redirected_to "/"
+    assert_redirected_to "/en"
 
     get "/orders" # one of admin pages
-    assert_redirected_to "/login"
+    assert_redirected_to "/login?locale=en"
   end
 end
