@@ -1,5 +1,7 @@
 #encoding: utf-8
 zh:
+  create_order_thanks:  "感谢您的订单，我们会尽快发货"
+  cart_is_empty:        "您的购物车还是空的"
 
   layouts:
     application:
@@ -28,6 +30,32 @@ zh:
         separator:  "."
         delimiter:  ","
         format:     "%u&nbsp;%n"
-
-
+  orders:
+    new:
+      legend:       "请填写您的订单信息"
+    form:
+      name:         "姓名"
+      address_html: "地址"
+      email:        "邮箱"
+      pay_type:     "付款方式"
+      submit:       "确认订单"
+  activerecord:
+    errors:
+      messages:
+        inclusion:  "付款方式有误"
+        blank:      "字段不能为空"
+    models:
+      order:        "订单"
+    attributes:
+      order:
+        address:    "地址"
+        name:       "姓名"
+        email:      "邮箱"
+        pay_type:   "付款方式"
+  errors:
+    template:
+      body:         "发生以下错误"
+      header:       
+        one:        "以下这个错误让%{model}不能正确提交"
+        other:      "以下这%{count}个错误让%{model}不能正确提交"
 

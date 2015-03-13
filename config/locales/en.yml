@@ -20,6 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  create_order_thanks: "Thank you for your order"
+  cart_is_empty:  "Your cart is empty"
   layouts:
     application:
       title:      "Pragmatic Bookshelf"
@@ -47,3 +49,12 @@ en:
         separator:  "."
         delimiter:  ","
         format:     "%u%n"
+  orders:
+    new:
+      legend:       "Please Enter Your Details"
+    form:
+      name:         "Name"
+      address_html: "Address"
+      email:        "Email"
+      pay_type:     "Pay With"
+      submit:       "Place Order"
